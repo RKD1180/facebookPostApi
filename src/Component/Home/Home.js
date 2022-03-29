@@ -96,8 +96,8 @@ const Home = () => {
       </form>
       <br />
 
-      {error && <Alert severity="error" autoHideDuration={5000} style={{ textAlign: 'center', width: '80%', margin: '0 auto' }}>{error}</Alert>}
-      {success && <Alert severity="success" autoHideDuration={5000} style={{ textAlign: 'center', width: '80%', margin: '0 auto' }}>{success}</Alert>}
+      {error && <Alert severity="error" autohideduration={5000} style={{ textAlign: 'center', width: '80%', margin: '0 auto' }}>{error}</Alert>}
+      {success && <Alert severity="success" autohideduration={5000} style={{ textAlign: 'center', width: '80%', margin: '0 auto' }}>{success}</Alert>}
     </div>
   );
 };
