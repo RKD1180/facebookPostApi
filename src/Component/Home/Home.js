@@ -26,7 +26,7 @@ const Home = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        setUrl(data.url);
+        setUrl(data.url?.toString());
         setLoading(false)
       });
   };
