@@ -33,21 +33,13 @@ const Home = () => {
   // console.log(process.env.REACT_APP_ACCESS_TOKEN)
 
   const onSubmit = data => {
+    // const url3 = `https://graph.facebook.com/v13.0/105601905421801/photos?url=http%3A%2F%2Ftinypic.com%2Fimages%2Fgoodbye.jpg&message=helloword%20test%20project&access_token=EAAFC9tiW2P0BAO5IaAEz6syHAnY2GA9lsCuBwUiSeOEpDANwJRCKXXttej1Iog3gZCGrjnOCfmakjs7wvK8ekwOuC2ZCxrI4C2dLHCCRFvsY4S8DUtuGg82iGZB0v3vKhREEoguRUoJz1ZCZC4aUrrqCHnoCri5MgurSUCiPgK0zAZCk5eTdkkZCfqdO3ZCiScvuZBy3ApbRn40mZC5rA1LqZAV`
     if (url) data.img = url;
-    if (url) {
-      fetch(`https://graph.facebook.com/v13.0/${process.env.REACT_APP_PAGE_ID}/photos?url=${data?.img}&message=${data?.text}&access_token=${process.env.REACT_APP_ACCESS_TOKEN}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.error) {
-            setError(data?.error?.message)
-          }
-          if (data?.data) {
-            reset()
-            setSuccess('You have successfully added facebook posts')
-          }
-        })
-    } else {
-      fetch(`https://graph.facebook.com/v13.0/${process.env.REACT_APP_PAGE_ID}/feed?message=${data?.text}&access_token=${process.env.REACT_APP_ACCESS_TOKEN}`)
+    if (!url) {
+
+      fetch(`https://graph.facebook.com/v13.0/${process.env.REACT_APP_PAGE_ID}/feed?message=${data?.text}&access_token=${process.env.REACT_APP_ACCESS_TOKEN}`, {
+        method: "post"
+      })
         .then(res => res.json())
         .then(data => {
           if (data.error) {
@@ -59,6 +51,22 @@ const Home = () => {
           }
         })
     }
+    if (url) {
+      fetch(`https://graph.facebook.com/v13.0/${process.env.REACT_APP_PAGE_ID}/photos?url=${data?.img}&message=${data?.text}&access_token=${process.env.REACT_APP_ACCESS_TOKEN}`, {
+        method: "post"
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            setError(data?.error?.message)
+          }
+          if (data?.data) {
+            reset()
+            setSuccess('You have successfully added facebook posts')
+          }
+        })
+    }
+
   }
   return (
     <div className="form">
