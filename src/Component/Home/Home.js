@@ -44,7 +44,8 @@ const Home = () => {
           if (data.error) {
             setError(data?.error?.message)
           }
-          if (data?.data) {
+          // console.log(data)
+          if (data?.id) {
             reset()
             setSuccess('You have successfully added facebook posts')
           }
